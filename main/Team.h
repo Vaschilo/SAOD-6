@@ -20,6 +20,11 @@ public:
 		this->name = a.name;
 		this->power = a.power;
 	}
+	bool operator > (Team a)
+	{
+		if (this->power > a.power) return 1;
+		return 0;
+	}
 	friend ostream& operator <<(ostream& out, Team a)
 	{
 		out << a.name << " " << a.power;

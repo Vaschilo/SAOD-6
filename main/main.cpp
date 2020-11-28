@@ -54,10 +54,11 @@ void from_hand(Tree& t)
 
 int main()
 {
+	setlocale(LC_ALL, "rus");
+
     Tree a;
 
 	from_file(a);
-
     a.push(Team("a", 1));
     a.push(Team("b", 4));
     a.push(Team("c", 2));
@@ -73,6 +74,9 @@ int main()
         cout << "======================\n\n";
         a.tournament_print(i); system("pause");
     }
+	system("cls");
+	a.print();
+	a.finalists();
 
     return 0;
 }

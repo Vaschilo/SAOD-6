@@ -7,9 +7,9 @@ private:
 	Team data;
 public:
 	Node* left;
-	Node* rigth;
-	Node() { this->left = nullptr; this->rigth = nullptr; }
-	Node(Team data) { this->left = nullptr; this->rigth = nullptr; this->data = data; }
+	Node* right;
+	Node() { this->left = nullptr; this->right = nullptr; }
+	Node(Team data) { this->left = nullptr; this->right = nullptr; this->data = data; }
 	~Node() {}
 
 	Team GetData() { return this->data; }
@@ -20,7 +20,7 @@ public:
 		for (int i = 0; i < a; i++) cout << "  ";
 		cout << data << endl;
 		if (this->left != nullptr)this->left->print(a + 1);
-		if (this->rigth != nullptr)this->rigth->print(a + 1);
+		if (this->right != nullptr)this->right->print(a + 1);
 	}
 
 	void tournament_print(int a, int limit)
@@ -31,8 +31,22 @@ public:
 			cout << data << endl;
 		}
 		if (this->left != nullptr)this->left->tournament_print(a + 1, limit);
-		if (this->rigth != nullptr)this->rigth->tournament_print(a + 1, limit);
+		if (this->right != nullptr)this->right->tournament_print(a + 1, limit);
 		cout << endl;
+	}
+
+	Team max(Node* current, bool a)
+	{
+		if (current->left->GetData() > current->right->GetData())
+		{
+			if (a) return current->left->GetData();
+			else return current->right->GetData();
+		}
+		else
+		{
+			if (a) return current->right->GetData();
+			else return current->left->GetData();
+		}
 	}
 };
 
@@ -54,7 +68,7 @@ private:
 			if (current->left == nullptr)
 			{
 				current->left = new Node(current->GetData());
-				current->rigth = new Node(data);
+				current->right = new Node(data);
 				++this->size;
 				if (data.GetPower() > current->GetData().GetPower())
 					current->SetData(data);
@@ -70,14 +84,14 @@ private:
 		{
 			if (data.GetPower() > current->GetData().GetPower())
 				current->SetData(data);
-			funk(buff, current->rigth, i, data);
+			funk(buff, current->right, i, data);
 		}
 	};
 	void clear_recurse(Node* current)
 	{
 		if (current == nullptr) return;
  		if (current->left != nullptr) { clear_recurse(current->left); delete current->left; }
-		if (current->rigth != nullptr) { clear_recurse(current->rigth); delete current->rigth; }
+		if (current->right != nullptr) { clear_recurse(current->right); delete current->right; }
 	}
 
 public:
@@ -109,5 +123,25 @@ public:
 	{
 		if (this->root == nullptr) return;
 		this->root->tournament_print(0, a);
+	}
+	void finalists()
+	{
+		if (this->root != nullptr)
+		{
+			Team ar; 
+			ar = this->root->max(this->root, 1);
+			cout << "Победитель ";
+			cout << ar << endl;
+			ar = this->root->max(this->root, 0);
+			cout << "2 призёр " << ar << endl;
+			if (this->root->left != nullptr)
+			{
+				Team ar2;
+				ar2 = this->root->max(this->root->left, 0);
+				ar = this->root->max(this->root->right, 0);
+				if (ar > ar2) cout << "3 призёр " << ar << endl;
+				else cout << "3 призёр " << ar2 << endl;
+			}
+		}
 	}
 };
