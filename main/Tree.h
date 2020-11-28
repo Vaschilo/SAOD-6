@@ -15,14 +15,6 @@ public:
 	Team GetData() { return this->data; }
 	void SetData(Team a) { this->data = a; }
 
-	int sum() 
-	{ 
-		int sum = this->data.GetPower();
-		if (this->left != nullptr) sum += this->left->sum();
-		if (this->rigth != nullptr) sum += this->rigth->sum();
-		return sum;
-	}
-
 	void print(int a)
 	{
 		for (int i = 0; i < a; i++) cout << "  ";
@@ -108,18 +100,11 @@ public:
 		}
 		this->funk(this->size, this->root, 1, alfa);
 	}
-
-	int sum() 
-	{
-		if (this->root == nullptr) return 0;
-		return this->root->sum();
-	}
 	void print() 
 	{
 		if (this->root == nullptr) return;
 		this->root->print(0);
 	}
-
 	void tournament_print(int a)
 	{
 		if (this->root == nullptr) return;

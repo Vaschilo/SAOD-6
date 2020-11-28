@@ -26,7 +26,7 @@ int main()
     a.print();system("pause");system("cls");
     a.push(Team("g", 5));
     a.print();
-    /*a.tournament_print(1);system("pause"); system("cls");*/
+    a.tournament_print(1);system("pause"); system("cls");
 
 
     return 0;
