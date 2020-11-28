@@ -17,7 +17,7 @@ int main()
     a.push(Team("b", 4));
     a.print();
     a.push(Team("c", 2));
-    a.print();system("pause");system("cls");
+    a.print();
     a.push(Team("d", 3));
     a.print();system("pause");system("cls");
     a.push(Team("e", 4));
