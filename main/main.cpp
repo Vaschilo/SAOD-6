@@ -13,11 +13,11 @@ int main()
     Tree a;
 
     a.push(Team("a", 1));
-    a.print();
+    a.print(); system("pause"); system("cls");
     a.push(Team("b", 4));
-    a.print();
+    a.print(); system("pause"); system("cls");
     a.push(Team("c", 2));
-    a.print();
+    a.print(); system("pause"); system("cls");
     a.push(Team("d", 3));
     a.print();system("pause");system("cls");
     a.push(Team("e", 4));
@@ -25,8 +25,8 @@ int main()
     a.push(Team("f", 6));
     a.print();system("pause");system("cls");
     a.push(Team("g", 5));
-    a.print();system("pause"); system("cls");
-    a.tournament_print(1);system("pause"); system("cls");
+    a.print();
+    /*a.tournament_print(1);system("pause"); system("cls");*/
 
 
     return 0;
