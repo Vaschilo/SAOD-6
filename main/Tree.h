@@ -25,14 +25,14 @@ public:
 
 	void tournament_print(int a, int limit)
 	{
-		if (a <= limit) 
+		if (a >= limit) 
 		{
 			for (int i = 0; i < a; i++) cout << "  ";
 			cout << data << endl;
-			if (this->left != nullptr)this->left->tournament_print(a + 1, limit);
-			if (this->rigth != nullptr)this->rigth->tournament_print(a + 1, limit);
-			cout << endl;
 		}
+		if (this->left != nullptr)this->left->tournament_print(a + 1, limit);
+		if (this->rigth != nullptr)this->rigth->tournament_print(a + 1, limit);
+		cout << endl;
 	}
 };
 

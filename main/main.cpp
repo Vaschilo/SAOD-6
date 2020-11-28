@@ -7,27 +7,72 @@
 //турам и определить первых трех призеров
 
 #include "Tree.h"
+#include <fstream>
+#include <functional>
+
+void from_file(Tree& t)
+{
+	fstream f;
+	Team pr;
+	f.open("file.txt");
+	if (!f.is_open()) return;
+	while (!f.eof())
+	{
+		f >> pr;
+		t.push(pr);
+	}
+	f.close();
+}
+
+void from_hand(Tree& t)
+{
+	int power = 1;
+	string name = "Std_name";
+
+	function<int(string)> f = [](string a)
+	{
+		int n = 1;
+		do
+		{
+			if (n <= 0) cout << "Введите значение больше 0";
+			cout << "\n" << a << "\n";
+			cin >> n;
+		} while (n <= 0);
+		return n;
+	};
+
+	int n = f("Введите число команд");
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Введите название команды\n";
+		cin >> name;
+		power = f("Введите время рейтинг этой детали");
+		t.push(Team(name, power));
+	}
+}
 
 int main()
 {
     Tree a;
 
-    a.push(Team("a", 1));
-    a.print(); system("pause"); system("cls");
-    a.push(Team("b", 4));
-    a.print(); system("pause"); system("cls");
-    a.push(Team("c", 2));
-    a.print(); system("pause"); system("cls");
-    a.push(Team("d", 3));
-    a.print();system("pause");system("cls");
-    a.push(Team("e", 4));
-    a.print();system("pause");system("cls");
-    a.push(Team("f", 6));
-    a.print();system("pause");system("cls");
-    a.push(Team("g", 5));
-    a.print();
-    a.tournament_print(1);system("pause"); system("cls");
+	from_file(a);
 
+    a.push(Team("a", 1));
+    a.push(Team("b", 4));
+    a.push(Team("c", 2));
+    a.push(Team("d", 3));
+    a.push(Team("e", 4));
+    a.push(Team("f", 6));
+    a.push(Team("g", 5));
+    
+    for (int i = 0; i < 5; i++)
+    {
+		system("cls");
+        a.print();
+        cout << "======================\n\n";
+        a.tournament_print(i); system("pause");
+    }
 
     return 0;
 }
