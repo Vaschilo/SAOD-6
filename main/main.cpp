@@ -13,9 +13,9 @@ int main()
     Tree a;
 
     a.push(Team("a", 1));
-    a.print();system("pause");system("cls");
+    a.print();
     a.push(Team("b", 4));
-    a.print();system("pause");system("cls");
+    a.print();
     a.push(Team("c", 2));
     a.print();system("pause");system("cls");
     a.push(Team("d", 3));
