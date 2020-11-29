@@ -37,6 +37,7 @@ public:
 
 	Team max(Node* current, bool a)
 	{
+		if (current->left == nullptr) return Team();
 		if (current->left->GetData() > current->right->GetData())
 		{
 			if (a) return current->left->GetData();
@@ -126,9 +127,10 @@ public:
 	}
 	void finalists()
 	{
+		Team ar; 
+		Team ar2;
 		if (this->root != nullptr)
 		{
-			Team ar; 
 			ar = this->root->max(this->root, 1);
 			cout << "Победитель ";
 			cout << ar << endl;
@@ -136,7 +138,6 @@ public:
 			cout << "2 призёр " << ar << endl;
 			if (this->root->left != nullptr)
 			{
-				Team ar2;
 				ar2 = this->root->max(this->root->left, 0);
 				ar = this->root->max(this->root->right, 0);
 				if (ar > ar2) cout << "3 призёр " << ar << endl;
