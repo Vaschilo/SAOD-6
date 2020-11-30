@@ -127,8 +127,13 @@ public:
 	}
 	void finalists()
 	{
-		Team ar; 
+		Team ar;
 		Team ar2;
+		if (this->root->left == nullptr)
+		{
+			cout << "Победитель " << this->root->GetData() << endl;
+			return;
+		}
 		if (this->root != nullptr)
 		{
 			ar = this->root->max(this->root, 1);
@@ -136,7 +141,7 @@ public:
 			cout << ar << endl;
 			ar = this->root->max(this->root, 0);
 			cout << "2 призёр " << ar << endl;
-			if (this->root->left != nullptr)
+			if (this->root->left->left != nullptr)
 			{
 				ar2 = this->root->max(this->root->left, 0);
 				ar = this->root->max(this->root->right, 0);
